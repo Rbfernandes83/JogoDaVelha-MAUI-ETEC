@@ -1,0 +1,45 @@
+
+name: Compilar Jogo da Velha Android
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build-android:
+    runs-on: windows-latest
+
+    steps:
+      - name: Baixar codigo
+        uses: actions/checkout@v4
+
+      - name: Instalar .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Instalar MAUI Android
+        run: dotnet workload install maui-android
+
+      - name: Restaurar dependencias
+        run: dotnet restore MauiAppJogoDaVelha/MauiAppJogoDaVelha.csproj -p:TargetFramework=net8.0-android
+
+      - name: Compilar APK Android
+        run: >
+          dotnet publish MauiAppJogoDaVelha/MauiAppJogoDaVelha.csproj
+          -f net8.0-android
+          -c Release
+          -p:AndroidPackageFormat=apk
+          -p:AndroidKeyStore=false
+          -p:RunAOTCompilation=false
+          -o ./publicacao
+
+      - name: Disponibilizar APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: JogoDaVelha-Neon-Android
+          path: publicacao/**/*.apk
+          if-no-files-found: error

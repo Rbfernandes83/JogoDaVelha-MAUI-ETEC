@@ -1,45 +1,220 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiAppJogoDaVelha.MainPage">
+﻿
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MauiAppJogoDaVelha.MainPage"
+    BackgroundColor="#0B1226">
 
     <ContentPage.Background>
-        <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-            <GradientStop Color="Purple" Offset="0.3" />
-            <GradientStop Color="Red" Offset="1.1" />
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#091123" Offset="0.0"/>
+            <GradientStop Color="#172D50" Offset="0.55"/>
+            <GradientStop Color="#241B48" Offset="1.0"/>
         </LinearGradientBrush>
     </ContentPage.Background>
 
     <ContentPage.Resources>
-        <Style TargetType="Button">
-            <Setter Property="BackgroundColor" Value="Transparent" />
-            <Setter Property="CornerRadius" Value="15" />
-            <Setter Property="TextColor" Value="White" />
-            <Setter Property="FontSize" Value="80" />
-            <Setter Property="BorderWidth" Value="1" />
-            <Setter Property="BorderColor" Value="White" />
-        </Style>
+        <ResourceDictionary>
+
+            <Style x:Key="CasaStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#203453"/>
+                <Setter Property="TextColor" Value="#65E4EF"/>
+                <Setter Property="FontSize" Value="48"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="16"/>
+                <Setter Property="BorderColor" Value="#405A80"/>
+                <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
+
+            <Style x:Key="AcaoStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#386BDF"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="17"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="HeightRequest" Value="56"/>
+            </Style>
+
+        </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid RowDefinitions="*, *, *, *" 
-          ColumnDefinitions="*, *, *"
-          ColumnSpacing="10" RowSpacing="10" Margin="10">
-        
-        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" 
-               Text="Jogo da Velha" />
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="22,35,22,25"
+            Spacing="22"
+            MaximumWidthRequest="460">
 
-        <Button x:Name="btn10" Grid.Row="1" Grid.Column="0" Clicked="Button_Clicked" />
-        <Button x:Name="btn11" Grid.Row="1" Grid.Column="1" Clicked="Button_Clicked" />
-        <Button x:Name="btn12" Grid.Row="1" Grid.Column="2" Clicked="Button_Clicked" />
+            <!-- Cabeçalho -->
+            <VerticalStackLayout Spacing="5">
+                <Label
+                    Text="ETEC • MOBILE I"
+                    TextColor="#65E4EF"
+                    FontSize="12"
+                    HorizontalTextAlignment="Center"/>
 
-        <Button Grid.Row="2" Grid.Column="0" Clicked="Button_Clicked" />
-        <Button Grid.Row="2" Grid.Column="1" Clicked="Button_Clicked" />
-        <Button Grid.Row="2" Grid.Column="2" Clicked="Button_Clicked" />
+                <Label
+                    Text="JOGO DA VELHA"
+                    TextColor="White"
+                    FontSize="29"
+                    FontAttributes="Bold"
+                    HorizontalTextAlignment="Center"/>
 
-        <Button Grid.Row="3" Grid.Column="0" Clicked="Button_Clicked" />
-        <Button Grid.Row="3" Grid.Column="1" Clicked="Button_Clicked" />
-        <Button Grid.Row="3" Grid.Column="2" Clicked="Button_Clicked" />
+                <Label
+                    Text="NEON EDITION"
+                    TextColor="#A8B9D9"
+                    FontSize="13"
+                    CharacterSpacing="4"
+                    HorizontalTextAlignment="Center"/>
+            </VerticalStackLayout>
 
-    </Grid>
+            <!-- Placar -->
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="9">
+
+                <Border Grid.Column="0"
+                        BackgroundColor="#203453"
+                        Stroke="#405A80"
+                        StrokeThickness="1"
+                        Padding="8,14"
+                        StrokeShape="RoundRectangle 14">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="JOGADOR X"
+                               TextColor="#65E4EF"
+                               FontSize="12"
+                               HorizontalTextAlignment="Center"/>
+                        <Label x:Name="lblPlacarX"
+                               Text="0"
+                               TextColor="White"
+                               FontSize="28"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="1"
+                        BackgroundColor="#203453"
+                        Stroke="#405A80"
+                        StrokeThickness="1"
+                        Padding="8,14"
+                        StrokeShape="RoundRectangle 14">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="EMPATES"
+                               TextColor="#A8B9D9"
+                               FontSize="12"
+                               HorizontalTextAlignment="Center"/>
+                        <Label x:Name="lblEmpates"
+                               Text="0"
+                               TextColor="White"
+                               FontSize="28"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Column="2"
+                        BackgroundColor="#203453"
+                        Stroke="#405A80"
+                        StrokeThickness="1"
+                        Padding="8,14"
+                        StrokeShape="RoundRectangle 14">
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="JOGADOR O"
+                               TextColor="#FFB47B"
+                               FontSize="12"
+                               HorizontalTextAlignment="Center"/>
+                        <Label x:Name="lblPlacarO"
+                               Text="0"
+                               TextColor="White"
+                               FontSize="28"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <!-- Indicador de turno -->
+            <Border BackgroundColor="#203453"
+                    Stroke="#405A80"
+                    StrokeShape="RoundRectangle 30"
+                    Padding="14">
+                <Label x:Name="lblStatus"
+                       Text="Vez do jogador X"
+                       TextColor="#65E4EF"
+                       FontSize="17"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"/>
+            </Border>
+
+            <!-- Tabuleiro -->
+            <Grid x:Name="Tabuleiro"
+                  RowDefinitions="*,*,*"
+                  ColumnDefinitions="*,*,*"
+                  RowSpacing="9"
+                  ColumnSpacing="9"
+                  HorizontalOptions="Fill"
+                  MaximumWidthRequest="380">
+
+                <Grid.HeightRequest>
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="330"
+                             Tablet="380"
+                             Desktop="380"/>
+                </Grid.HeightRequest>
+
+                <Button x:Name="btn00" Grid.Row="0" Grid.Column="0"
+                        Style="{StaticResource CasaStyle}"
+                        Clicked="Button_Clicked"/>
+                <Button x:Name="btn01" Grid.Row="0" Grid.Column="1"
+                        Style="{StaticResource CasaStyle}"
+                        Clicked="Button_Clicked"/>
+                <Button x:Name="btn02" Grid.Row="0" Grid.Column="2"
+                        Style="{StaticResource CasaStyle}"
+                        Clicked="Button_Clicked"/>
+
+                <Button x:Name="btn10" Grid.Row="1" Grid.Column="0"
+                        Style="{StaticResource CasaStyle}"
+                        Clicked="Button_Clicked"/>
+                <Button x:Name="btn11" Grid.Row="1" Grid.Column="1"
+                        Style="{StaticResource CasaStyle}"
+                        Clicked="Button_Clicked"/>
+                <Button x:Name="btn12" Grid.Row="1" Grid.Column="2"
+                        Style="{StaticResource CasaStyle}"
+                        Clicked="Button_Clicked"/>
+
+                <Button x:Name="btn20" Grid.Row="2" Grid.Column="0"
+                        Style="{StaticResource CasaStyle}"
+                        Clicked="Button_Clicked"/>
+                <Button x:Name="btn21" Grid.Row="2" Grid.Column="1"
+                        Style="{StaticResource CasaStyle}"
+                        Clicked="Button_Clicked"/>
+                <Button x:Name="btn22" Grid.Row="2" Grid.Column="2"
+                        Style="{StaticResource CasaStyle}"
+                        Clicked="Button_Clicked"/>
+            </Grid>
+
+            <!-- Resultado -->
+            <Label x:Name="lblResultado"
+                   Text=""
+                   TextColor="#F7D46A"
+                   FontSize="19"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   MinimumHeightRequest="28"/>
+
+            <!-- Botão reiniciar -->
+            <Button x:Name="btnReiniciar"
+                    Text="↻  NOVA PARTIDA"
+                    Style="{StaticResource AcaoStyle}"
+                    Clicked="Reiniciar_Clicked"/>
+
+            <Label
+                Text="Desenvolvido para a Agenda 11 • ETEC"
+                TextColor="#8FA4C8"
+                FontSize="11"
+                HorizontalTextAlignment="Center"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
 
 </ContentPage>
