@@ -5,8 +5,8 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
       - master
+      - main
 
 jobs:
   build-android:
@@ -19,17 +19,27 @@ jobs:
       - name: Instalar .NET 8
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: '8.0.425'
+
+      - name: Fixar SDK .NET 8
+        shell: pwsh
+        run: |
+          dotnet new globaljson --sdk-version 8.0.425 --force
+          dotnet --version
 
       - name: Instalar MAUI Android
-        run: dotnet workload install maui-android
+        run: dotnet workload install maui-android --version 8.0.100
 
       - name: Restaurar dependencias
-        run: dotnet restore MauiAppJogoDaVelha/MauiAppJogoDaVelha.csproj -p:TargetFramework=net8.0-android
+        run: >
+          dotnet restore
+          MauiAppJogoDaVelha/MauiAppJogoDaVelha.csproj
+          -p:TargetFramework=net8.0-android
 
       - name: Compilar APK Android
         run: >
-          dotnet publish MauiAppJogoDaVelha/MauiAppJogoDaVelha.csproj
+          dotnet publish
+          MauiAppJogoDaVelha/MauiAppJogoDaVelha.csproj
           -f net8.0-android
           -c Release
           -p:AndroidPackageFormat=apk
