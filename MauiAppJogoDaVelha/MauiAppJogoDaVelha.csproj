@@ -5,7 +5,7 @@
     <!-- Plataforma Android -->
     <TargetFramework>net8.0-android</TargetFramework>
 
-    <!-- Configuracoes do aplicativo -->
+    <!-- Configuracoes gerais -->
     <OutputType>Exe</OutputType>
     <RootNamespace>MauiAppJogoDaVelha</RootNamespace>
     <UseMaui>true</UseMaui>
@@ -14,15 +14,15 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
-    <!-- Identificacao do aplicativo -->
+    <!-- Nome e identificacao do aplicativo -->
     <ApplicationTitle>Jogo da Velha Neon</ApplicationTitle>
     <ApplicationId>com.rbfernandes83.jogodavelhaneon</ApplicationId>
 
-    <!-- Versao atualizada -->
+    <!-- Versao do aplicativo -->
     <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
     <ApplicationVersion>2</ApplicationVersion>
 
-    <!-- Versao minima do Android -->
+    <!-- Android minimo -->
     <SupportedOSPlatformVersion>21.0</SupportedOSPlatformVersion>
 
   </PropertyGroup>
@@ -30,9 +30,9 @@
   <!-- Recursos visuais -->
   <ItemGroup>
 
-    <!-- Icone Neon personalizado -->
+    <!-- Icone personalizado Neon -->
     <MauiIcon
-      Include="Resources\AppIcon\icone_neon.png" />
+      Include="Resources\AppIcon\appicon.png" />
 
     <!-- Tela de abertura -->
     <MauiSplashScreen
