@@ -18,8 +18,8 @@
     <!-- Identificacao do aplicativo -->
     <ApplicationTitle>Jogo da Velha Neon</ApplicationTitle>
     <ApplicationId>com.rbfernandes83.jogodavelhaneon</ApplicationId>
-    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-    <ApplicationVersion>1</ApplicationVersion>
+    <ApplicationDisplayVersion>1.0.1</ApplicationDisplayVersion>
+    <ApplicationVersion>2</ApplicationVersion>
 
     <!-- Versao minima do Android -->
     <SupportedOSPlatformVersion>21.0</SupportedOSPlatformVersion>
@@ -29,11 +29,10 @@
   <!-- Recursos visuais -->
   <ItemGroup>
 
-    <!-- Icone do aplicativo -->
+    <!-- Novo icone personalizado -->
     <MauiIcon
-      Include="Resources\AppIcon\appicon.svg"
-      ForegroundFile="Resources\AppIcon\appiconfg.svg"
-      Color="#172D50" />
+      Include="Resources\AppIcon\icone_neon.png"
+      BaseSize="512,512" />
 
     <!-- Tela de abertura -->
     <MauiSplashScreen
